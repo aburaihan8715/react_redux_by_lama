@@ -3,8 +3,8 @@ import Warning from "../warning/Warning";
 import "./update.css";
 
 import { useState } from "react";
-import { updateUser2 } from "../../redux/userSlice";
-// import { updateUser } from "../../redux/apiCalls";
+import { updateUser } from "../../redux/apiCalls";
+import { deleteUser } from "../../redux/userSlice";
 
 export default function Update() {
   const [name, setName] = useState("");
@@ -13,9 +13,13 @@ export default function Update() {
   const { userInfo, pending, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handleUpdate = (e) => {
+  const handleUserUpdate = (e) => {
     e.preventDefault();
-    dispatch(updateUser2({ name, email }));
+    updateUser({ name, email }, dispatch);
+  };
+  const handleUserDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteUser());
   };
 
   return (
@@ -23,7 +27,9 @@ export default function Update() {
       <div className="updateWrapper">
         <h3 className="updateTitle">Update Your Account</h3>
         <Warning />
-        <button className="delete">Delete Account</button>
+        <button onClick={handleUserDelete} className="delete">
+          Delete Account
+        </button>
         <div className="updateContainer">
           <form>
             <div className="formItem">
@@ -49,7 +55,7 @@ export default function Update() {
               <label>Password</label>
               <input className="formInput" type="password" />
             </div>
-            <button disabled={pending} className="updateButton" onClick={handleUpdate}>
+            <button disabled={pending} className="updateButton" onClick={handleUserUpdate}>
               Update
             </button>
             {error && <span className="error">Something went wrong!</span>}
