@@ -10,7 +10,7 @@ export default function Update() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  const { userInfo, pending, error } = useSelector((state) => state.user);
+  const userInfo = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const handleUserUpdate = (e) => {
@@ -55,11 +55,9 @@ export default function Update() {
               <label>Password</label>
               <input className="formInput" type="password" />
             </div>
-            <button disabled={pending} className="updateButton" onClick={handleUserUpdate}>
+            <button className="updateButton" onClick={handleUserUpdate}>
               Update
             </button>
-            {error && <span className="error">Something went wrong!</span>}
-            {pending === false && <span className="success">Account has been updated!</span>}
           </form>
         </div>
       </div>
