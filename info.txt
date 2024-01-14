@@ -8,6 +8,8 @@ https://www.youtube.com/watch?v=DYtYyFOfpBY&t=2587s
 
 
 ### features/actions
+1.update user
+2.delete user
 
 
 
