@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "./menulink.css";
 
 export default function MenuLink({ icon, text }) {
-  const userInfo = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.user);
   return (
     <div className="menulink">
       {icon}
